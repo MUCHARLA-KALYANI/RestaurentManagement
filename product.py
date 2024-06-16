@@ -8,7 +8,7 @@ import sqlite3
 class productClass:
     def __init__(self, root):
         self.root = root
-        self.root.geometry("1100x500+220+130")
+        self.root.geometry("1060x510+220+130")
         self.root.title("Restaurant Management System")
         self.root.config(bg="white")
         self.root.focus_force()

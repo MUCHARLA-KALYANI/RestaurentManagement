@@ -8,7 +8,7 @@ import tempfile
 class BillClass:
     def __init__(self,root):
         self.root=root
-        self.root.geometry("1350x700+0+0")
+        self.root.geometry("1350x650+0+0")
         self.root.title("Restaurant Management System")
         self.root.config(bg="white")
         self.cart_list=[]
@@ -47,7 +47,7 @@ class BillClass:
 
          #== Product Deatails Frame===
         ProductFrame3=Frame(ProductFrame1,bd=3,relief=RIDGE)
-        ProductFrame3.place(x=2,y=140,width=398,height=375)
+        ProductFrame3.place(x=2,y=140,width=398,height=300)
 
         scrolly=Scrollbar(ProductFrame3,orient=VERTICAL)
         scrollx=Scrollbar(ProductFrame3,orient=HORIZONTAL)
@@ -92,14 +92,14 @@ class BillClass:
 
         #== Cal cart Frame===
         Cal_Cart_Frame=Frame(self.root,bd=2,relief =RIDGE,bg="white")
-        Cal_Cart_Frame.place(x=420, y=190,width=530,height=360)
+        Cal_Cart_Frame.place(x=420, y=190,width=530,height=350)
 
 
         #== Calculator Frame===
         self.var_cal_input=StringVar()
 
         Cal_Frame=Frame(Cal_Cart_Frame,bd=9,relief =RIDGE,bg="white")
-        Cal_Frame.place(x=5, y=10,width=268,height=340)
+        Cal_Frame.place(x=5, y=10,width=268,height=330)
 
 
         self.txt_cal_input=Entry(Cal_Frame,textvariable=self.var_cal_input,font=('arial',15,'bold'),width=21,bd=10,relief=GROOVE,state='readonly',justify=RIGHT)
@@ -131,7 +131,7 @@ class BillClass:
 
         #==Cart Frame===
         cart_Frame=Frame(Cal_Cart_Frame,bd=3,relief=RIDGE)
-        cart_Frame.place(x=280,y=8,width=245,height=342)
+        cart_Frame.place(x=280,y=8,width=245,height=335)
         self.cartTitle = Label(cart_Frame,text="Cart \t Total Dishes:[0]",font=("goudy old style",15),bg="lightgray")
         self.cartTitle.pack(side=TOP,fill=X)
 
@@ -183,7 +183,7 @@ class BillClass:
 
        # ======================billing area===================
         billFrame=Frame(self.root,bd=2,relief=RIDGE,bg='white')
-        billFrame.place(x=953,y=110,width=410,height=410)
+        billFrame.place(x=953,y=110,width=390,height=410)
 
         BTitle=Label(billFrame,text="Customer Bill Area",font=("goudy old style",20,"bold"),bg="#f44336",fg="white").pack(side=TOP,fill=X)
         scrolly=Scrollbar(billFrame,orient=VERTICAL)
@@ -382,7 +382,7 @@ class BillClass:
         self.invoice=int(time.strftime("%H%M%S"))+int(time.strftime("%d%m%Y"))
         print(self.invoice)
         bill_top_temp=f''' 
-\t\tXYZ-Restaurant
+\t\tFlavoursFusion-Restaurant
 \t Phone No. 98725***** , Delhi-125001
 {str("="*47)}
 

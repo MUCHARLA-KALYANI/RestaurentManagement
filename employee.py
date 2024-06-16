@@ -11,7 +11,7 @@ import re
 class employeeClass:
     def __init__ (self, root):
         self.root = root
-        self.root.geometry("1100x500+220+130")
+        self.root.geometry("1060x510+220+130")
         self.root.title("Restaurant Management System")
         self.root.config(bg = "white")
         self.root.focus_force()
@@ -153,9 +153,9 @@ class employeeClass:
 
         self.show()
 #=======================ADD====================================================
+    
+
     def add(self):
-        con = sqlite3.connect(database='ims.db')
-        cur = con.cursor()
         try:
             if (
                 not self.var_emp_id.get()
@@ -178,35 +178,35 @@ class employeeClass:
                 messagebox.showerror("Error", "Invalid email format", parent=self.root)
             elif not self.var_contact.get().isdigit() or len(self.var_contact.get()) != 10:
                 messagebox.showerror("Error", "Contact should contain exactly 10 numeric digits", parent=self.root)
-           
             elif not self.var_salary.get().isdigit():
                 messagebox.showerror("Error", "Salary should be numeric", parent=self.root)
-        
             else:
-                cur.execute("Select * from employee where eid=?", (self.var_emp_id.get(),))
-                row = cur.fetchone()
-                if row != None:
-                    messagebox.showerror("Error", "This Employee ID already assigned, try different")
-                else:
-                    cur.execute("Insert into employee (eid,name,email,gender,contact,dob,doj,password,utype,address,salary) values(?,?,?,?,?,?,?,?,?,?,?)", (
-                        self.var_emp_id.get(),
-                        self.var_name.get(),
-                        self.var_email.get(),
-                        self.var_gender.get(),
-                        self.var_contact.get(),
-                        self.var_dob.get(),
-                        self.var_doj.get(),
-                        self.var_password.get(),
-                        self.var_utype.get(),
-                        self.txt_address.get('1.0', END),
-                        self.var_salary.get()
-                    ))
-                    con.commit()
-                    messagebox.showinfo("Success", "Employee Added Successfully", parent=self.root)
-                    self.show()
+                with sqlite3.connect(database='ims.db') as con:
+                    cur = con.cursor()
+                    cur.execute("SELECT * FROM employee WHERE eid=?", (self.var_emp_id.get(),))
+                    row = cur.fetchone()
+                    if row is not None:
+                        messagebox.showerror("Error", "This Employee ID already assigned, try different", parent=self.root)
+                    else:
+                        cur.execute("INSERT INTO employee (eid, name, email, gender, contact, dob, doj, password, utype, address, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (
+                            self.var_emp_id.get(),
+                            self.var_name.get(),
+                            self.var_email.get(),
+                            self.var_gender.get(),
+                            self.var_contact.get(),
+                            self.var_dob.get(),
+                            self.var_doj.get(),
+                            self.var_password.get(),
+                            self.var_utype.get(),
+                            self.txt_address.get('1.0', END),
+                            self.var_salary.get()
+                        ))
+                        con.commit()
+                        messagebox.showinfo("Success", "Employee Added Successfully", parent=self.root)
+                        self.show()
 
         except Exception as ex:
-            messagebox.showerror("Error", f"Error due to: {str(ex)}")
+            messagebox.showerror("Error", f"Error due to: {str(ex)}", parent=self.root)
 
     #=======================SHOW==================================================
 

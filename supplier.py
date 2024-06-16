@@ -5,7 +5,7 @@ import sqlite3
 class supplierClass:
     def __init__ (self, root):
         self.root = root
-        self.root.geometry("1100x500+220+130")
+        self.root.geometry("1050x510+220+130")
         self.root.title("Restaurant Management System")
         self.root.config(bg = "white")
         self.root.focus_force()
@@ -32,7 +32,7 @@ class supplierClass:
         lbl_search.place(x=700,y=80)
         
         txt_search=Entry(self.root,textvariable=self.var_searchtext,font=("goudy old style",15),bg='lightyellow').place(x=800,y=80, width = 160)
-        btn_search=Button(self.root,text="Search",command=self.search,font=("goudy old style",15),bg='#4caf50',fg='white',cursor='hand2').place(x=980,y=79,width=100,height=28)
+        btn_search=Button(self.root,text="Search",command=self.search,font=("goudy old style",15),bg='#4caf50',fg='white',cursor='hand2').place(x=970,y=79,width=90,height=28)
         #========TITLE==============#
 
         title=Label(self.root,text="Supplier Details" , font=("goudy old style",20,"bold "),bg='#0f4d7d',fg='white').place(x=50,y=10,height = 40,width=950)
@@ -85,9 +85,9 @@ class supplierClass:
         self.SupplierTable.heading("desc",text="Description")
         self.SupplierTable["show"]="headings"
 
-        self.SupplierTable.column("sid",width=90)
-        self.SupplierTable.column("name",width=100)
-        self.SupplierTable.column("contact",width=100)
+        self.SupplierTable.column("sid",width=80)
+        self.SupplierTable.column("name",width=80)
+        self.SupplierTable.column("contact",width=80)
         self.SupplierTable.column("desc",width=90)
         self.SupplierTable.pack(fill=BOTH,expand=1)
         self.SupplierTable.bind("<ButtonRelease-1>",self.get_data)
@@ -123,7 +123,7 @@ class supplierClass:
                     messagebox.showinfo("Success", "Supplier Added Successfully", parent=self.root)
                     self.show()
         except Exception as ex:
-            messagebox.showerror("Error", f"Error due to: {str(ex)}")
+            messagebox.showerror("Error", f"Error due to: {str(ex)}",parent=self.root)
 
     #=======================SHOW==================================================
 
